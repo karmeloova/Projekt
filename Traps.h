@@ -10,8 +10,8 @@ class Traps
 	public:
 		Traps(Vector2f Position, Texture* pT);
 		void Draw(RenderWindow& window);
+		Sprite body;
 
 	private:
-		Sprite body;
 };
 

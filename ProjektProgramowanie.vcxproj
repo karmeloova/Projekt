@@ -137,12 +137,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coins.cpp" />
     <ClCompile Include="Platforms.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProjektProgramowanie.cpp" />
     <ClCompile Include="Traps.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coins.h" />
     <ClInclude Include="Platforms.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Traps.h" />

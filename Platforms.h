@@ -8,8 +8,8 @@ class Platforms
 	public:
 		Platforms(Vector2f Position, Texture* pP);
 		void Draw(RenderWindow& window);
+		Sprite body;
 
 	private:
-		Sprite body;
 };	
 

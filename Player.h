@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Platforms.h"
+#include "Traps.h"
+#include "Coins.h"
 using namespace sf;
 class Player
 {
@@ -10,18 +13,20 @@ public:
 	void Move(float deltaTime);
 	void Jump();
 	void Draw(RenderWindow& window);
-
-	void Collide();
+	void Collide(std::vector<Platforms>* platforms, vector<Traps>* spikes, vector<Coins>* coins);
+	void Restart();
 	Vector2f GetPosition() { return body.getPosition(); }
-	float gravity = 1.0f;
+	float gravity = 0.05f;
 	//-----------------ZMIENNE-----------------------
 	bool onGround = true; //Zmienna do sprawdzania czy postaæ dotyka pod³ogi
+	Sprite body;
+	int points = 0;
+
 private:
-	float movementSpeed = 500.0f;
-	Sprite body; //Cia³o/postaæ gracza - na tym wykonujemy wszystkie operacje typu przemieszczenie itp.
+	float movementSpeed = 0.5f;
 	Vector2f velocity {0,0}; //Zmienna do poruszania postaci¹ prawo/lewo (x) góra/dó³ (y)
 	bool canJump = true;
 	bool wantJump = false;
-	float jumpHeight = 1500.0f;
+	float jumpHeight = 1.5f;
 };
 
