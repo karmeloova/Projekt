@@ -6,9 +6,15 @@ using namespace std;
 class Platforms
 {
 	public:
-		Platforms(Vector2f Position, Texture* pP);
+		Platforms(Vector2f Position, Texture* pP, bool moving); //Konstruktor do platformy, na któr¹ postaæ skacze
+		Platforms(Vector2f position, Vector2f size); //Konstruktor do platormy, po której postaæ chodzi (ta br¹zowa pod nogami)
+
 		void Draw(RenderWindow& window);
-		Sprite body;
+		void MovingPlatform(float deltaTime);
+		Sprite body; //Cia³o do platofrmy, na któr¹ postaæ skacze
+		RectangleShape bodyS; //Cia³o do tej br¹zowej platformy
+		bool movePlatform = false;
+		
 
 	private:
 };	

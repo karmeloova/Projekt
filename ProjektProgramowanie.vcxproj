@@ -137,6 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Buttons.cpp" />
+    <ClCompile Include="CactusClass.cpp" />
     <ClCompile Include="Coins.cpp" />
     <ClCompile Include="Platforms.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -144,6 +146,8 @@
     <ClCompile Include="Traps.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Buttons.h" />
+    <ClInclude Include="CactusClass.h" />
     <ClInclude Include="Coins.h" />
     <ClInclude Include="Platforms.h" />
     <ClInclude Include="Player.h" />
