@@ -14,8 +14,11 @@ class Platforms
 		Sprite body; //Cia³o do platofrmy, na któr¹ postaæ skacze
 		RectangleShape bodyS; //Cia³o do tej br¹zowej platformy
 		bool movePlatform = false;
+		int direction = 1;
+		float platformSpeed = 0.1f; // Prêdkoœæ przesuwania platformy (piksele na sekundê)
+		float platformDistance = 200.0f; // Odleg³oœæ, na któr¹ platforma bêdzie siê przesuwa
+		float startPositionX;
 		
 
 	private:
 };	
-

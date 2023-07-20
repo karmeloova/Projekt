@@ -10,6 +10,7 @@ using namespace std;
 
 Player::Player(Texture* pT)
 {
+	if (pT == nullptr) return;
 	body.setPosition(startPosition); //Ustaw gracza na pozycji pocz¹tkowej 
 	body.setTexture(*pT); //Za³aduj teksturê gracz (pT - playerTexture)
 	onGround = false; //Ustaw, ¿e postaæ nie jest na ziemi

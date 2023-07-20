@@ -6,7 +6,6 @@ using namespace std;
 
 class Traps
 {
-
 	public:
 		Traps(Vector2f Position, Texture* pT);
 		void Draw(RenderWindow& window);
@@ -14,4 +13,3 @@ class Traps
 
 	private:
 };
-

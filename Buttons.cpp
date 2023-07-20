@@ -1,37 +1,38 @@
 #include "Buttons.h"
 
-Buttons::Buttons(Vector2f Position, Texture* pB)
+Buttons::Buttons(Vector2f Position, Texture* pB, String buttonText, Vector2f pos)
 {
+	if (pB == nullptr) return;
 	body.setTexture(*pB);
 	body.setPosition(Position);
 	body.setScale(0.35, 0.35);
-	
-}
-
-void Buttons::Draw(RenderWindow& window, String buttonText, Vector2f pos)
-{
 	buttonFont.loadFromFile("Fonts/consola.ttf");
-	Text bT(buttonText, buttonFont, 35);
-	bT.setPosition(pos);
-	window.draw(body);
-	window.draw(bT);
+	bT = new Text(buttonText, buttonFont, 35);
+	bT->setPosition(pos);
 }
 
-void Buttons::clickOnButton(RenderWindow& window)
+
+void Buttons::Draw(RenderWindow& window)
+{
+	window.draw(body);
+	window.draw(*bT);
+}
+
+bool Buttons::clickOnButton(RenderWindow& window, int offsetx, int offsety)
 {
 	Vector2i mousePos = Mouse::getPosition(window);
+
 	Vector2f buttonPosition = body.getPosition();
 	Vector2f buttonSize(body.getGlobalBounds().width, body.getGlobalBounds().height);
 
 	FloatRect buttonBounds(buttonPosition, buttonSize);
 
-	if (body.getGlobalBounds().contains(mousePos.x, mousePos.y))
+	if (body.getGlobalBounds().contains(mousePos.x-offsetx, mousePos.y-offsety)) //minus przesuniêcie widoku
 	{
-		cout << "NAJECHALES NA PRZYCISK";
 		if (Mouse::isButtonPressed(Mouse::Left)) {
-			std::cout << "KLIKNIÊCIE W PRZYCISK" << std::endl;
+			return true;
 		}
+		return false;
 	}
+	return false;
 }
-
-

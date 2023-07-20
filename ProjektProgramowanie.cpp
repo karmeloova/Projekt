@@ -9,17 +9,16 @@
 #include "Buttons.h"
 using namespace sf;
 
-
 void Restart(Player* gracz) {
    
     if (gracz == nullptr) return;
-    gracz->lives = gracz->lives - 1; //pomniejsz zmienn¹ "lives" nale¿¹c¹ do obiektu gracz o 1
-    gracz->Restart(); //Wykonaj funkcjê restart na obiekcie gracz
+    gracz->lives = gracz->lives - 1; 
+    gracz->Restart(); 
 
 }
 
-
 float getCenter(Player* gracz) {
+    if (gracz == nullptr) return 0;
     return gracz->body.getPosition().x + 350.0f;
 }
 
@@ -61,13 +60,13 @@ int main()
     platformsVector.push_back(Platforms(Vector2f(1200.0f, 300.0f), &platformTexture, 0));
     platformsVector.push_back(Platforms(Vector2f(1400.0f, 170.0f), &platformTexture, 0));
     platformsVector.push_back(Platforms(Vector2f(1750.0f, 320.0f), &platformTexture, 0));
+    platformsVector.push_back(Platforms(Vector2f(2300.0f, 320.0f), &platformTexture, true));
     platformsVector.push_back(Platforms(Vector2f(2480.0f, 400.0f), &platformTexture, 0));
     platformsVector.push_back(Platforms(Vector2f(2745.0f, 400.0f), &platformTexture, 0));
     platformsVector.push_back(Platforms(Vector2f(2900.0f, 300.0f), &platformTexture, 0));
     platformsVector.push_back(Platforms(Vector2f(4000.0f, 400.0f), &platformTexture, 0));
     platformsVector.push_back(Platforms(Vector2f(-135.0f, 470.0f), (Vector2f(1035.0f, 30.0f))));
     platformsVector.push_back(Platforms(Vector2f(1200.0f, 470.0f), (Vector2f(500.0f, 30.0f))));
-    platformsVector.push_back(Platforms(Vector2f(1900.0f, 320.0f), (Vector2f(500.0f, 30.0f))));
     platformsVector.push_back(Platforms(Vector2f(3050.0f, 470.0f), (Vector2f(300.0f, 30.0f))));
     platformsVector.push_back(Platforms(Vector2f(3550.0f, 470.0f), (Vector2f(200.0f, 30.0f))));
     platformsVector.push_back(Platforms(Vector2f(4400.0f, 470.0f), (Vector2f(1000.0f, 30.0f))));
@@ -77,7 +76,7 @@ int main()
     spikesVector.push_back(Traps(Vector2f(600.0f, 420.0f), &spikesTexture));
     spikesVector.push_back(Traps(Vector2f(1320.0f, 270.0f), &spikesTexture));
     spikesVector.push_back(Traps(Vector2f(2600.0f, 370.0f), &spikesTexture));
-    spikesVector[2].body.setScale(0.1, 1); //0.45
+    spikesVector[2].body.setScale(0.45, 1);
 
     vector<Coins> coinsVector;
     coinsVector.push_back(Coins(Vector2f(235.0f, 329.0f), &coinTexture));
@@ -100,7 +99,7 @@ int main()
 
     Player gracz(&playerTexture);
 
-    Buttons playButton(Vector2f(-85, -150), &buttonTexture);
+    Buttons playButton(Vector2f(-85, -150), &buttonTexture, "Play", Vector2f(-43, -140));
 
     //---------------------TEXT--------------------------------------
 
@@ -129,20 +128,22 @@ int main()
             }
         }
 
+     
+
         switch (sceneNumber) {
             case 0: //MENU GRY
                 gameWindow.clear();
                 gameWindow.draw(backgroundSprite);
-                playButton.Draw(gameWindow, "Play", Vector2f(-43,-140));
-                playButton.clickOnButton(gameWindow);
+                playButton.Draw(gameWindow);
+                if(playButton.clickOnButton(gameWindow, 480, 270)) sceneNumber = 1;;
                 gameWindow.setView(view);
                 view.setCenter(0, 0);
                 gameWindow.display();
-                if (Keyboard::isKeyPressed(Keyboard::Enter)) sceneNumber = 1;
                 break;
             case 1: //POZIOM 1
                 gracz.Jump(); //Wykonuj funkcjê Jump ca³y czas kiedy okno jest otwarte 
                 gracz.Move(deltaTime, gameWindow); //Wykonuj funkcjê Move ca³y czas kiedy okno jest otwarte 
+                platformsVector[7].MovingPlatform(deltaTime);
                 for (int i = 0; i < spikesVector.size(); i++) {
                     if (gracz.body.getGlobalBounds().intersects(spikesVector[i].body.getGlobalBounds())) {
                         Restart(&gracz);
@@ -234,4 +235,3 @@ int main()
         }
     }
 }
-

@@ -10,4 +10,3 @@ public:
 	void Draw(RenderWindow& window);
 	Sprite body;
 };
-

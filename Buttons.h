@@ -7,12 +7,12 @@ using namespace sf;
 class Buttons
 {
 public:
-	Buttons(Vector2f Position, Texture* pB);
-	void Draw(RenderWindow& window, String buttonText, Vector2f pos);
+	Buttons(Vector2f Position, Texture* pB, String buttonText, Vector2f pos);
+	void Draw(RenderWindow& window);
 	Sprite body;
-	void clickOnButton(RenderWindow& window);
+	bool clickOnButton(RenderWindow& window, int offsetx, int offsety);
 
 private: 
 	Font buttonFont;
+	Text* bT;
 };
-

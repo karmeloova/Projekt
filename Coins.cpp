@@ -2,6 +2,7 @@
 
 Coins::Coins(Vector2f Position, Texture* pC)
 {
+	if (pC == nullptr) return;
 	body.setTexture(*pC);
 	body.setPosition(Position);
 	body.setScale(0.08, 0.08);

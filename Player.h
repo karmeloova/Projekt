@@ -32,4 +32,3 @@ private:
 	float jumpHeight = 1.25f;
 	Vector2f startPosition{ 30.0f, 400.0f };
 };
-
